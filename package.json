@@ -1,6 +1,20 @@
 {
   "name": "sortablejs-vue3",
-  "version": "0.1.2",
+  "version": "0.1.3",
+  "author": {
+    "email": "maxwell.leiter@gmail.com",
+    "name": "Max Leiter",
+    "url": "https://maxleiter.com"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/MaxLeiter/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxleiter/sortablejs-vue3"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build && vue-tsc --emitDeclarationOnly && mv dist/lib dist/types",
@@ -20,8 +34,10 @@
     }
   },
   "dependencies": {
+    "vite-tsconfig-paths": "^3.5.0"
+  },
+  "peerDependencies": {
     "sortablejs": "^1.15.0",
-    "vite-tsconfig-paths": "^3.5.0",
     "vue": "^3.2.25"
   },
   "imports": {
@@ -33,7 +49,7 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "rollup-plugin-typescript2": "0.31.2",
     "typescript": "^4.5.4",
-    "vite": "^2.9.9",
-    "vue-tsc": "^0.36.1"
+    "vite": "^3.0.0-alpha.9",
+    "vue-tsc": "^0.37.0"
   }
 }
