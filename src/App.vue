@@ -6,6 +6,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 <template>
   <h1>SortableJS-vue3 demo</h1>
+  <h2>Source on <a href="https://github.com/maxleiter/sortablejs-vue3">GitHub</a></h2>
   <ol class="instructions">
     <li>First run <code>yarn add sortablejs-vue3 sortablejs</code></li>
     <li>
@@ -206,17 +207,38 @@ main {
   </p>
 
   <HelloWorld />
+  <footer>
+    <p>
+      Made by <a href="https://twitter.com/max_leiter">@Max_Leiter</a>
+    </p>
+  </footer>
 </template>
 
 <style>
+:root {
+  --link: hsl(215, 49%, 49%);
+  --gap: 8px;
+  --gap-half: calc(var(--gap) / 2);
+  --gap-quarter: calc(var(--gap) / 4);
+  --gap-double: calc(var(--gap) * 2);
+  --content-width: 800px;
+
+  --fg: #2c3e50;
+  --bg: #ecf0f1;
+  --bg-emphasis: #bdc3c7;
+
+  --border: #ccc;
+  --border-radius: 4px;
+}
+
 #app {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: var(--fg);
   margin: 0 auto;
-  max-width: 800px;
+  max-width: var(--content-width);
 }
 
 #app .instructions {
@@ -228,24 +250,24 @@ main {
 }
 
 #app .instructions li {
-  margin-bottom: .5rem;
+  margin-bottom: var(--gap);
 }
 
 #app details {
-  margin: 20px 0;
-  max-width: 800px;
-  padding: 8px 10px;
-  background: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin: var(--gap-double) 0;
+  /* max-width: var(--content-); */
+  padding: var(--gap);
+  background: var(--bg-emphasis);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   cursor: pointer;
 }
 
 #app pre {
   font-size: 14px;
-  padding: 10px;
+  padding: var(--gap);
   margin: 0 auto;
-  max-width: 800px;
+  /* max-width: var(--); */
   text-align: left;
   overflow-x: scroll;
   max-height: 500px;
@@ -255,15 +277,50 @@ main {
   list-style: none;
   padding: 0;
   text-align: left;
-  max-width: 800px;
-  margin: 8px auto;
+  /* max-width: 800px; */
+  margin: var(--gap) auto;
 }
 
 #app .draggable {
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
 
 #app summary::after {
   content: " (click to expand)";
+}
+
+#app h1 {
+  font-size: 2rem;
+}
+
+#app h2 {
+  font-size: 1.5rem;
+}
+
+#app a {
+  color: var(--link);
+  padding: var(--gap-quarter);
+  text-decoration: none;
+
+  display: inline-block;
+  position: relative;
+}
+
+#app a:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: hsl(215, 83%, 67%);
+  transform-origin: bottom right;
+  transition: transform 0.15s ease-in-out;
+}
+
+#app a:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 </style>

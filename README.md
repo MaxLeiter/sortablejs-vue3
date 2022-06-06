@@ -2,7 +2,6 @@
 
 [Demo](https://sortablejs-vue3.maxleiter.com)
 
-
 This is a thin wrapper around the great [SortableJS](https://github.com/SortableJS/Sortable) library. I had many issues migrating from Vue.Draggable to vue.draggable.next, and after briefly investigating I decided that it was too complicated and a smaller solution was the answer. This wrapper tries to keep you as close to Sortable as possible (wrapper libaries seem to re-implement or unnecessarily wrap a lot of code).
 
 Note that this library is small enough (see [Sortable.vue](https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/Sortable.vue) for what you really need) that I recommend including it in your project without using npm and importing it as a local component. All you need is the linked file.
