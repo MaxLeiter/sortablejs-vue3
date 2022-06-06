@@ -1,24 +1,25 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
-import typescript from 'rollup-plugin-typescript2';
-import { resolve } from 'path';
-import viteTsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), viteTsconfigPaths()],
+  plugins: [vue()],
   resolve: {
     dedupe: ['vue'],
+    preserveSymlinks: false,
   },
+  logLevel: 'info',
   build: {
+    target: 'esnext',
+    minify: 'terser',
     lib: {
       entry: path.resolve(__dirname, 'lib/main.ts'),
       name: 'SortableJS-Vue3',
       fileName: (format) => `sortablejs-vue3.${format}.js`
     },
-    rollupOptions: {
 
+    rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       external: ['vue', 'sortablejs'],
@@ -30,10 +31,6 @@ export default defineConfig({
           sortablejs: 'Sortable'
         }
       },
-      input: 'lib/main.ts',
-      plugins: [
-        typescript()
-      ]
     }
   }
 })

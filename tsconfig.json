@@ -12,12 +12,11 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
+    "baseUrl": "./",
+    "rootDir": "./",
     "declaration": true,
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
-    "paths": {
-      "@components/*": ["./src/components/*"]
-    }
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "lib/**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

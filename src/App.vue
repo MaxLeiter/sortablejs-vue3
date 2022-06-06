@@ -57,6 +57,7 @@ import HelloWorld from "./components/HelloWorld.vue";
   </details>
   <details>
     <summary>Code for the below demo</summary>
+    <aside>Also available on <a href="https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/HelloWorld.vue">GitHub</a></aside>
     <pre>
 {{ `<script setup lang="ts">
 import Sortable from "./Sortable.vue";
@@ -225,7 +226,7 @@ main {
 
   --fg: #2c3e50;
   --bg: #ecf0f1;
-  --bg-emphasis: #bdc3c7;
+  --bg-emphasis: #f5f7fa;
 
   --border: #ccc;
   --border-radius: 4px;
