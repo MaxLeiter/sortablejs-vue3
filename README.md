@@ -3,6 +3,8 @@
 This is a thin wrapper around the great [SortableJS](https://github.com/SortableJS/Sortable) library. I had many issues migration from Vue.Draggable to vue.draggable.next, and after briefly investigating I decided that it was too complicated and a smaller solution was the answer. This wrapper tries to keep you as close to Sortable and vanilla JS as possible.
 
 ## Usage
+You can see some demo usage at https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/HelloWorld.vue 
+
 1. `yarn add sortablejs-vue3 sortablejs` or `npm install sortablejs-vue3 sortablejs`
 2. Import the component in your `<script setup>`: `import { Sortable } from 'sortablejs-vue'`
 3. Use the component:
