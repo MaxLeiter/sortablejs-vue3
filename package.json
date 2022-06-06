@@ -1,6 +1,6 @@
 {
   "name": "sortablejs-vue3",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "dev": "vite",
     "build": "vite build && vue-tsc --emitDeclarationOnly && mv dist/lib dist/types",
