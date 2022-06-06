@@ -10,7 +10,7 @@ import HelloWorld from "./components/HelloWorld.vue";
     <li>First run <code>yarn add sortablejs-vue3 sortablejs</code></li>
     <li>
       Then add
-      <pre><code>import Sortable from "sortablejs-vue3"</code></pre>
+      <pre><code>import { Sortable } from "sortablejs-vue3"</code></pre>
       in your <code>&lt;script setup&gt;</code>
     </li>
     <li>

@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vue-tsc --emitDeclarationOnly && mv dist/lib dist/types",
+    "build:site": "vue-tsc --noEmit && vite --config vite.site.config.ts build",
     "preview": "vite preview"
   },
   "types": "./dist/types/main.d.ts",
@@ -20,7 +21,6 @@
   },
   "dependencies": {
     "sortablejs": "^1.15.0",
-    "sortablejs-vue3": "./sortablejs-vue3-v0.1.0.tgz",
     "vite-tsconfig-paths": "^3.5.0",
     "vue": "^3.2.25"
   },

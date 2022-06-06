@@ -1,1 +1,1 @@
-export {default as Sortable} from '../src/components/Sortable.vue';
+export {default as Sortable} from '../src/components/Sortable.vue'

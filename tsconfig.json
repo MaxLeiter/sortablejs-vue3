@@ -14,9 +14,11 @@
     "skipLibCheck": true,
     "declaration": true,
     "outDir": "dist",
-    // changes made below are not in the original file
     "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@components/*": ["./src/components/*"]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "lib/**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
