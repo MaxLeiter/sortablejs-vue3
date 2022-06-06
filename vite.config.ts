@@ -18,7 +18,6 @@ export default defineConfig({
       name: 'SortableJS-Vue3',
       fileName: (format) => `sortablejs-vue3.${format}.js`
     },
-
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library

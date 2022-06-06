@@ -34,14 +34,13 @@
     }
   },
   "dependencies": {
-    "vite-tsconfig-paths": "^3.5.0"
+    "sortablejs": "^1.15.0",
+    "vite-tsconfig-paths": "^3.5.0",
+    "vue": "^3.2.37"
   },
   "peerDependencies": {
     "sortablejs": "^1.15.0",
     "vue": "^3.2.25"
-  },
-  "imports": {
-    "@components/*": "./src/components/*.vue"
   },
   "devDependencies": {
     "@types/node": "^17.0.40",
