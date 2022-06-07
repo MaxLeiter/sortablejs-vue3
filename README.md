@@ -1,6 +1,6 @@
 # SortableJS-vue3
 
-[Demo](https://sortablejs-vue3.maxleiter.com)
+[Demo](https://sortablejs-vue3.maxleiter.com) | [npm](https://www.npmjs.com/package/sortablejs-vue3)
 
 ![GIF of the demo being used](./readme/demo.gif)
 
