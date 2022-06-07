@@ -31,7 +31,7 @@ You can see a demo with more complete code at [https://sortablejs-vue3.maxleiter
 
 2. Import the component in your `<script setup>` (or `<script>`):
 ```typescript
-import { Sortable } from 'sortablejs-vue'
+import { Sortable } from 'sortablejs-vue3'
 ```
 
 3. Use the component:
