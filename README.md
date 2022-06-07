@@ -75,6 +75,17 @@ You can listen to Sortable events by adding the listeners to the `Sortable` comp
 >
 ```
 
+### Vuex
+No changes are necessary to work with Vuex. Just pass `store.state.item` as your list. To modify your data you need to manually listen to the events and calculate the new position with `event.oldIndex` and `event.newIndex` with something like the following:
+
+```typescript
+const moveItemInArray = <T>(array: T[], from: number, to: number) => {
+  const item = array.splice(from, 1)[0];
+  array.splice(to, 0, item);
+};
+
+onEnd(event) { moveItemInArray(store.state.items, event.oldIndex, event.newIndex }
+```
 ## Development
 1. Run `yarn` to install dependencies
 2. `yarn dev` will start a web server with live reloading
