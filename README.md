@@ -86,7 +86,7 @@ const moveItemInArray = <T>(array: T[], from: number, to: number) => {
   array.splice(to, 0, item);
 };
 
-onEnd(event) { moveItemInArray(store.state.items, event.oldIndex, event.newIndex }
+onEnd(event) { moveItemInArray(store.state.items, event.oldIndex, event.newIndex) }
 ```
 ## Development
 1. Run `yarn` to install dependencies
