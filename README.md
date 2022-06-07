@@ -1,7 +1,8 @@
 # SortableJS-vue3
 
 [Demo](https://sortablejs-vue3.maxleiter.com)
-[!GIF of the demo being used](/readme/demo.gif)
+
+![GIF of the demo being used](./readme/demo.gif)
 
 This is a thin wrapper around the great [SortableJS](https://github.com/SortableJS/Sortable) library. I had many issues migrating from Vue.Draggable to vue.draggable.next, and after briefly investigating I decided that it was too complicated and a smaller solution was the answer. This wrapper tries to keep you as close to Sortable as possible (wrapper libaries seem to re-implement or unnecessarily wrap a lot of code).
 
