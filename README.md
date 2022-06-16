@@ -42,6 +42,7 @@ import { Sortable } from 'sortablejs-vue3'
     <Sortable
       :list="elements"
       item-key="id"
+      tag="div"
       :options="options"
     >
       <template #item="{element, index}">
@@ -54,6 +55,8 @@ import { Sortable } from 'sortablejs-vue3'
 ```
 
 4. The `list` and `item-key` props are necessary. The `options` prop is an object that can contain any SortableJS option. You can find a full list of them here: https://github.com/SortableJS/Sortable#options
+
+5. The `tag` prop is an optional prop, it's the HTML node type of the element that creates an outer element for the included slot. the default value is `div`
 
 ### Events
 You can listen to Sortable events by adding the listeners to the `Sortable` component. For example:
