@@ -2,7 +2,6 @@
 import { ref, PropType, watch, onUnmounted, Prop } from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
 
-let sortable: Sortable | null = null;
 const props = defineProps({
   options: {
     type: Object as PropType<
@@ -53,10 +52,11 @@ const emit = defineEmits<{
 }>();
 
 const containerRef = ref<HTMLElement | null>(null);
+const sortable = ref<Sortable | null>(null);
 
 watch(containerRef, (newDraggable) => {
   if (newDraggable) {
-    sortable = new Sortable(newDraggable, {
+    sortable.value = new Sortable(newDraggable, {
       ...props.options,
       onChoose: (event) => emit("choose", event),
       onUnchoose: (event) => emit("unchoose", event),
@@ -75,9 +75,10 @@ watch(containerRef, (newDraggable) => {
 });
 
 onUnmounted(() => {
-  if (sortable) {
-    sortable.destroy();
+  if (sortable.value) {
+    sortable.value.destroy();
     containerRef.value = null;
+    sortable.value = null;
   }
 });
 </script>

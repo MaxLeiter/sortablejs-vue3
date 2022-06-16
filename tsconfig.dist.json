@@ -16,8 +16,8 @@
     "rootDir": "./",
     "declaration": true,
     "outDir": "dist",
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "lib/**/*.ts"],
+  "files": ["lib/main.ts", "src/components/Sortable.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
