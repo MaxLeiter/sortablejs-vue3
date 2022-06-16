@@ -34,6 +34,11 @@ const props = defineProps({
     default: "",
     required: true,
   },
+  tag: {
+    type: String as PropType<string>,
+    default: "div",
+    required: false,
+  }
 });
 
 const emit = defineEmits<{
@@ -84,7 +89,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="containerRef" :class="$props.class">
+  <component 
+    ref="containerRef" 
+    :is="$props.tag"
+    :class="$props.class"
+  >
     <slot
       v-for="(item, index) of list"
       :key="item[$props.itemKey!]"
@@ -92,5 +101,5 @@ onUnmounted(() => {
       :index="index"
       name="item"
     ></slot>
-  </div>
+  </component>
 </template>
