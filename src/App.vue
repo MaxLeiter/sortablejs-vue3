@@ -6,7 +6,9 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 <template>
   <h1>SortableJS-vue3 demo</h1>
-  <h2>Source on <a href="https://github.com/maxleiter/sortablejs-vue3">GitHub</a></h2>
+  <h2>
+    Source on <a href="https://github.com/maxleiter/sortablejs-vue3">GitHub</a>
+  </h2>
   <ol class="instructions">
     <li>First run <code>yarn add sortablejs-vue3 sortablejs</code></li>
     <li>
@@ -55,153 +57,6 @@ import HelloWorld from "./components/HelloWorld.vue";
       </li>
     </ul>
   </details>
-  <details>
-    <summary>Code for the below demo</summary>
-    <aside>Also available on <a href="https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/HelloWorld.vue">GitHub</a></aside>
-    <pre>
-{{ `<script setup lang="ts">
-import Sortable from "./Sortable.vue";
-import { computed } from 'vue'
-import type { SortableOptions } from "sortablejs";
-
-const elements = computed(() => {
-    return [
-        {
-            id: '1',
-            text: 'One',
-            children: [
-                {
-                    id: '1-1',
-                    text: 'One-One',
-                    children: [
-                        {
-                            id: '1-1-1',
-                            text: 'One-One-One',
-                        },
-                        {
-                            id: '1-1-2',
-                            text: 'One-One-Two',
-                        },
-                    ],
-                },
-                {
-                    id: '1-2',
-                    text: 'One-Two',
-                },
-            ],
-        },
-        {
-            id: '2',
-            text: 'Two'
-        },
-        {
-            id: '3',
-            text: 'Three'
-        }
-    ]
-})
-
-const logEvent = (evt: Event, evt2?: Event) => {
-    if (evt2) {
-        console.log(evt, evt2);
-    } else {
-        console.log(evt);
-    }
-}
-
-const options = computed(() => {
-  return {
-    draggable: '.draggable',
-    animation: 150,
-    ghostClass: 'ghost',
-    dragClass: 'drag',
-  } as SortableOptions
-})
-</script>
-
-<style lang="css" scoped>
-main {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.draggable {
-  background: #fff;
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid #ccc;
-  cursor: move;
-}
-
-.ghost {
-  opacity: 0.5;
-  background: #fff;
-  border: 1px dashed #ccc;
-}
-
-.drag {
-  background: #f5f5f5;
-}
-</style>
-
-<template>
-  <main>
-    <Sortable
-      :list="elements"
-      item-key="id"
-      :options="options"
-      @change="logEvent"
-      @choose="logEvent"
-      @unchoose="logEvent"
-      @start="logEvent"
-      @end="logEvent"
-      @add="logEvent"
-      @update="logEvent"
-      @sort="logEvent"
-      @remove="logEvent"
-      @filter="logEvent"
-      @move="logEvent"
-      @clone="logEvent"
-    >
-      <template #item="{element, index}">
-        <div class="draggable" :key="element.id">
-          &#123;&#123; element.text &#125;&#125;
-          <Sortable
-            v-if="element.children"
-            :list="element.children"
-            item-key="id"
-            :options="options"
-            @change="logEvent"
-            @choose="logEvent"
-            @unchoose="logEvent"
-            @start="logEvent"
-            @end="logEvent"
-            @add="logEvent"
-            @update="logEvent"
-            @sort="logEvent"
-            @remove="logEvent"
-            @filter="logEvent"
-            @move="logEvent"
-            @clone="logEvent"
-          >
-            <template #item="{element, index}">
-              <div class="draggable" :key="element.id">
-               &#123;&#123; element.text &#125;&#125;
-              </div>
-            </template>
-          </Sortable>
-        </div>
-      </template>
-    </Sortable>
-  </main>
-</template>
-
-<style scoped>
-
-</style>
-`}}
-  </pre>
-  </details>
   <p>
     Open your console to view the events being logged while you interact with
     the list below.
@@ -210,7 +65,13 @@ main {
   <HelloWorld />
   <footer>
     <p>
-      Made by <a href="https://twitter.com/max_leiter">@Max_Leiter</a>
+      Made by <a href="https://twitter.com/max_leiter">@Max_Leiter</a> &mdash;
+      Code for this page is available on
+      <a
+        href="https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/HelloWorld.vue"
+      >
+        GitHub
+      </a>
     </p>
   </footer>
 </template>
@@ -247,7 +108,7 @@ main {
 }
 
 #app .instructions code {
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 #app .instructions li {
@@ -308,7 +169,7 @@ main {
 }
 
 #app a:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);

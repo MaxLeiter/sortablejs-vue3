@@ -15,23 +15,25 @@ Note that this library is small enough (see [Sortable.vue](https://github.com/Ma
 - `shopify/draggable` and [`vue-shopify-dragable`](https://github.com/zjffun/vue-shopify-draggable) seemed promising but they don't supported nested components
 
 ## Usage
+
 You can see a demo with more complete code at [https://sortablejs-vue3.maxleiter.com](https://sortablejs-vue3.maxleiter.com).
 
 1. Install the package:
 
-  ```bash
-  yarn add sortablejs-vue3 sortablejs
-  ```
+```bash
+yarn add sortablejs-vue3 sortablejs
+```
 
-  or
+or
 
-  ```bash
-  npm install sortablejs-vue3 sortablejs
-  ```
+```bash
+npm install sortablejs-vue3 sortablejs
+```
 
 2. Import the component in your `<script setup>` (or `<script>`):
+
 ```typescript
-import { Sortable } from 'sortablejs-vue3'
+import { Sortable } from "sortablejs-vue3";
 ```
 
 3. Use the component:
@@ -59,6 +61,7 @@ import { Sortable } from 'sortablejs-vue3'
 5. The `tag` prop is an optional prop, it's the HTML node type of the element that creates an outer element for the included slot. the default value is `div`
 
 ### Events
+
 You can listen to Sortable events by adding the listeners to the `Sortable` component. For example:
 
 ```typescript
@@ -81,6 +84,7 @@ You can listen to Sortable events by adding the listeners to the `Sortable` comp
 ```
 
 ### Vuex
+
 No changes are necessary to work with Vuex. Just pass `store.state.item` as your list. To modify your data you need to manually listen to the events and calculate the new position with `event.oldIndex` and `event.newIndex` with something like the following:
 
 ```typescript
@@ -91,7 +95,9 @@ const moveItemInArray = <T>(array: T[], from: number, to: number) => {
 
 onEnd(event) { moveItemInArray(store.state.items, event.oldIndex, event.newIndex) }
 ```
+
 ## Development
+
 1. Run `yarn` to install dependencies
 2. `yarn dev` will start a web server with live reloading
 3. `yarn build` will build the production library files

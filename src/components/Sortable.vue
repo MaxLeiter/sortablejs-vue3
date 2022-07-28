@@ -89,9 +89,6 @@ watch(
     if (options && sortable?.value) {
       sortable.value.options = { ...sortable.value.options, ...options };
     }
-  },
-  {
-    deep: true,
   }
 );
 

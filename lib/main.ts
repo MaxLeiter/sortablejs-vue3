@@ -1,3 +1,3 @@
-import Sortable from '../src/components/Sortable.vue'
+import Sortable from "../src/components/Sortable.vue";
 
-export { Sortable }
+export { Sortable };
