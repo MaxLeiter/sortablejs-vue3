@@ -1,61 +1,67 @@
 <script setup lang="ts">
 import Sortable from "./Sortable.vue";
-import { computed } from 'vue'
+import { computed, ref } from "vue";
 import type { SortableOptions } from "sortablejs";
 
 const elements = computed(() => {
-    return [
+  return [
+    {
+      id: "1",
+      text: "One",
+      children: [
         {
-            id: '1',
-            text: 'One',
-            children: [
-                {
-                    id: '1-1',
-                    text: 'One-One',
-                    children: [
-                        {
-                            id: '1-1-1',
-                            text: 'One-One-One',
-                        },
-                        {
-                            id: '1-1-2',
-                            text: 'One-One-Two',
-                        },
-                    ],
-                },
-                {
-                    id: '1-2',
-                    text: 'One-Two',
-                },
-            ],
+          id: "1-1",
+          text: "One-One",
+          children: [
+            {
+              id: "1-1-1",
+              text: "One-One-One",
+            },
+            {
+              id: "1-1-2",
+              text: "One-One-Two",
+            },
+          ],
         },
         {
-            id: '2',
-            text: 'Two'
+          id: "1-2",
+          text: "One-Two",
         },
-        {
-            id: '3',
-            text: 'Three'
-        }
-    ]
-})
+      ],
+    },
+    {
+      id: "2",
+      text: "Two",
+    },
+    {
+      id: "3",
+      text: "Three",
+    },
+  ];
+});
 
 const logEvent = (evt: Event, evt2?: Event) => {
-    if (evt2) {
-        console.log(evt, evt2);
-    } else {
-        console.log(evt);
-    }
-}
+  if (evt2) {
+    console.log(evt, evt2);
+  } else {
+    console.log(evt);
+  }
+};
 
-const options = computed(() => {
+const animating = ref(true);
+
+const options = computed<SortableOptions>(() => {
   return {
-    draggable: '.draggable',
-    animation: 150,
-    ghostClass: 'ghost',
-    dragClass: 'drag',
-  } as SortableOptions
-})
+    draggable: ".draggable",
+    animation: animating.value ? 150 : 0,
+    ghostClass: "ghost",
+    dragClass: "drag",
+  };
+});
+
+const onPress = (evt: Event) => {
+  animating.value = !animating.value;
+};
 </script>
 
 <style lang="css" scoped>
@@ -85,6 +91,7 @@ main {
 
 <template>
   <main>
+    <button @click="onPress">Toggle animations</button>
     <Sortable
       :list="elements"
       item-key="id"
@@ -102,7 +109,7 @@ main {
       @move="logEvent"
       @clone="logEvent"
     >
-      <template #item="{element, index}">
+      <template #item="{ element, index }">
         <div class="draggable" :key="element.id">
           {{ element.text }}
           <Sortable
@@ -123,7 +130,7 @@ main {
             @move="logEvent"
             @clone="logEvent"
           >
-            <template #item="{element, index}">
+            <template #item="{ element, index }">
               <div class="draggable" :key="element.id">
                 {{ element.text }}
               </div>
@@ -135,6 +142,4 @@ main {
   </main>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
