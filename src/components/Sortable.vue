@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, PropType, watch, onUnmounted, Prop } from "vue";
+import { ref, PropType, watch, onUnmounted, computed } from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
 
 const props = defineProps({
