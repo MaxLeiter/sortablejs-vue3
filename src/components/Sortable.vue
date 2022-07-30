@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, PropType, watch, onUnmounted, Prop } from "vue";
+import { ref, PropType, watch, onUnmounted, computed } from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
 
 const props = defineProps({
@@ -33,7 +33,9 @@ const props = defineProps({
   },
   /** The name of the key present in each item in the list that corresponds to a unique value. */
   itemKey: {
-    type: String as PropType<string>,
+    type: [String, Function] as PropType<
+      string | ((item: any) => string | number | Symbol)
+    >,
     default: "",
     required: true,
   },
@@ -62,6 +64,11 @@ const emit = defineEmits<{
 
 const containerRef = ref<HTMLElement | null>(null);
 const sortable = ref<Sortable | null>(null);
+const getKey = computed(() => {
+  if (typeof props.itemKey === "string")
+    return (item: any) => item[props.itemKey as string];
+  return props.itemKey;
+});
 
 watch(containerRef, (newDraggable) => {
   if (newDraggable) {
@@ -105,7 +112,7 @@ onUnmounted(() => {
   <component ref="containerRef" :is="$props.tag" :class="$props.class">
     <slot
       v-for="(item, index) of list"
-      :key="item[$props.itemKey!]"
+      :key="getKey(item)"
       :element="item"
       :index="index"
       name="item"
