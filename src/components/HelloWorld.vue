@@ -115,7 +115,7 @@ main {
           <Sortable
             v-if="element.children"
             :list="element.children"
-            item-key="id"
+            :item-key="(item) => item.id"
             :options="options"
             @change="logEvent"
             @choose="logEvent"

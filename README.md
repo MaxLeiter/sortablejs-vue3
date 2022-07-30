@@ -4,9 +4,7 @@
 
 ![GIF of the demo being used](./readme/demo.gif)
 
-This is a thin wrapper around the great [SortableJS](https://github.com/SortableJS/Sortable) library. I had many issues migrating from Vue.Draggable to vue.draggable.next, and after briefly investigating I decided that it was too complicated and a smaller solution was the answer. This wrapper tries to keep you as close to Sortable as possible (wrapper libaries seem to re-implement or unnecessarily wrap a lot of code).
-
-Note that this library is small enough (see [Sortable.vue](https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/Sortable.vue) for what you really need) that I recommend including it in your project without using npm and importing it as a local component. All you need is the linked file.
+This is a thin wrapper around the great [SortableJS](https://github.com/SortableJS/Sortable) library. I had many issues migrating from Vue.Draggable to vue.draggable.next, and after briefly investigating I decided that it was too complicated and a smaller solution was the answer. This wrapper attempts to keep you as close to Sortable as possible.
 
 ### Why not use \<other library\>?
 
@@ -59,6 +57,13 @@ import { Sortable } from "sortablejs-vue3";
 4. The `list` and `item-key` props are necessary. The `options` prop is an object that can contain any SortableJS option. You can find a full list of them here: https://github.com/SortableJS/Sortable#options
 
 5. The `tag` prop is an optional prop, it's the HTML node type of the element that creates an outer element for the included slot. the default value is `div`
+
+### Props
+
+- `list` (`Array<any>`, required): your data to list
+- `itemKey` (`string` | `(item) => (string | number | Symbol)`, required): The name of the key present in each item in the list that corresponds to a unique value (to use as the `key`)
+- `tag` (`string`, optional, default = `"div"`): The element type to render as
+- `options` (`Object`, false): the SortableJS options minus event handlers (see below)
 
 ### Events
 

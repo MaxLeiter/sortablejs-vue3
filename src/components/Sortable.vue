@@ -39,7 +39,7 @@ const props = defineProps({
     default: "",
     required: true,
   },
-  /** The element type to render as (string or function). */
+  /** The element type to render as. */
   tag: {
     type: String as PropType<string>,
     default: "div",
