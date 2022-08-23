@@ -2,26 +2,26 @@
 import { ref, PropType, watch, onUnmounted, computed } from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
 
+type SortableOptionsProp = Omit<
+  SortableOptions,
+  | "onUnchoose"
+  | "onChoose"
+  | "onStart"
+  | "onEnd"
+  | "onAdd"
+  | "onUpdate"
+  | "onSort"
+  | "onRemove"
+  | "onFilter"
+  | "onMove"
+  | "onClone"
+  | "onChange"
+>;
+
 const props = defineProps({
   /** All SortableJS options are supported; events are handled by the `defineEmits` below and should be used with v-on */
   options: {
-    type: Object as PropType<
-      Omit<
-        SortableOptions,
-        | "onUnchoose"
-        | "onChoose"
-        | "onStart"
-        | "onEnd"
-        | "onAdd"
-        | "onUpdate"
-        | "onSort"
-        | "onRemove"
-        | "onFilter"
-        | "onMove"
-        | "onClone"
-        | "onChange"
-      >
-    >,
+    type: Object as PropType<SortableOptionsProp>,
     default: null,
     required: false,
   },
@@ -94,7 +94,12 @@ watch(
   () => props.options,
   (options) => {
     if (options && sortable?.value) {
-      sortable.value.options = { ...sortable.value.options, ...options };
+      for (const property in options) {
+        sortable.value.option(
+          property as keyof SortableOptionsProp,
+          options[property as keyof SortableOptionsProp]
+        );
+      }
     }
   }
 );
