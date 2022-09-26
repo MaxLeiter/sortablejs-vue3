@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vue-tsc --emitDeclarationOnly --project tsconfig.dist.json && mv dist/lib dist/types && rm -rf dist/favicon.ico",
+    "build": "vite build && vue-tsc --emitDeclarationOnly --project tsconfig.dist.json && mv dist/lib dist/types",
     "build:site": "vue-tsc --noEmit --project tsconfig.site.json && vite --config vite.site.config.ts build",
     "preview": "vite preview",
     "lint": "yarn prettier --write '**/*.{ts,vue,json}'"
