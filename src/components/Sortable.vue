@@ -27,7 +27,7 @@ const props = defineProps({
   },
   /** Your list of items **/
   list: {
-    type: Array as PropType<any[]>,
+    type: [Array, Object] as PropType<any[]>,
     default: [],
     required: true,
   },
