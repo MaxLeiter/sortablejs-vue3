@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@types/node': 18.11.9
   '@types/sortablejs': 1.15.0
-  '@vitejs/plugin-vue': 3.2.0
+  '@vitejs/plugin-vue': 4.0.0
   prettier: 2.8.0
   sortablejs: ^1.15.0
   terser: 5.16.0
@@ -19,7 +19,7 @@ dependencies:
 devDependencies:
   '@types/node': 18.11.9
   '@types/sortablejs': 1.15.0
-  '@vitejs/plugin-vue': 3.2.0_vite@4.0.3+vue@3.2.41
+  '@vitejs/plugin-vue': 4.0.0_vite@4.0.3+vue@3.2.41
   prettier: 2.8.0
   terser: 5.16.0
   typescript: 4.9.3
@@ -294,11 +294,11 @@ packages:
     resolution: {integrity: sha512-qrhtM7M41EhH4tZQTNw2/RJkxllBx3reiJpTbgWCM2Dx0U1sZ6LwKp9lfNln9uqE26ZMKUaPEYaD4rzvOWYtZw==}
     dev: true
 
-  /@vitejs/plugin-vue/3.2.0_vite@4.0.3+vue@3.2.41:
-    resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
+  /@vitejs/plugin-vue/4.0.0_vite@4.0.3+vue@3.2.41:
+    resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      vite: ^3.0.0
+      vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
       vite: 4.0.3_qee7e2w6wma2o2koxfm26lyzqy
