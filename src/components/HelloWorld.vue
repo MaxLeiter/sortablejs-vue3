@@ -163,6 +163,27 @@ main {
 .drag {
   background: #f5f5f5;
 }
+
+.wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.settings {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.settings .range {
+  display: flex;
+  flex-direction: column;
+}
+.settings .range p {
+  margin: 0;
+}
 </style>
 
 <template>
@@ -234,24 +255,3 @@ main {
     </div>
   </main>
 </template>
-
-<style scoped>
-.wrapper {
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-.settings {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.settings .range {
-  display: flex;
-  flex-direction: column;
-}
-.settings .range p {
-  margin: 0;
-}
-</style>
