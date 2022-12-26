@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, PropType, watch, onUnmounted, computed } from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
-import { AutoScrollOptions } from "sortablejs/plugins";
+import type { AutoScrollOptions } from "sortablejs/plugins";
 
 type SortableOptionsProp = Omit<
   SortableOptions | AutoScrollOptions,
