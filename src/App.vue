@@ -10,7 +10,9 @@ import HelloWorld from "./components/HelloWorld.vue";
     Source on <a href="https://github.com/maxleiter/sortablejs-vue3">GitHub</a>
   </h2>
   <ol class="instructions">
-    <li>First run <code>yarn add sortablejs-vue3 sortablejs</code></li>
+    <li>First run
+      <code>yarn add sortablejs-vue3 <a href="https://github.com/SortableJS/Sortable" target="_blank" rel="noreferrer">sortablejs</a></code>
+    </li>
     <li>
       Then add
       <pre><code>import { Sortable } from "sortablejs-vue3"</code></pre>
@@ -38,22 +40,17 @@ import HelloWorld from "./components/HelloWorld.vue";
     <summary>Props</summary>
     <ul>
       <li>
-        <strong><code>options</code></strong
-        >: An object supporting all SortedJS options. See Sortable on GitHub
-        <a
-          href="https://github.com/SortableJS/Sortable#options"
-          rel="noreferrer"
-          target="_blank"
-          >for a full list</a
-        >.
+        <strong><code>options</code></strong>: An object supporting all SortedJS options. See Sortable on GitHub
+        <a href="https://github.com/SortableJS/Sortable#options" rel="noreferrer" target="_blank">for a full list</a>.
       </li>
       <li>
-        <strong><code>list</code></strong
-        >: An array-like object of elements to be made draggable.
+        <strong><code>list</code></strong>: An array-like object of elements to be made draggable.
       </li>
       <li>
-        <strong><code>itemKey</code></strong
-        >: A key to index the elements of the list.
+        <strong><code>itemKey</code></strong>: A key to index the elements of the list.
+      </li>
+      <li>
+        <strong><code>tag</code></strong>: The element type to render as. Defaults to <code>div</code>.
       </li>
     </ul>
   </details>
@@ -67,9 +64,7 @@ import HelloWorld from "./components/HelloWorld.vue";
     <p>
       Made by <a href="https://twitter.com/max_leiter">@Max_Leiter</a> &mdash;
       Code for this page is available on
-      <a
-        href="https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/HelloWorld.vue"
-      >
+      <a href="https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/HelloWorld.vue">
         GitHub
       </a>
     </p>
@@ -171,18 +166,17 @@ import HelloWorld from "./components/HelloWorld.vue";
 #app a:after {
   content: "";
   position: absolute;
-  width: 100%;
+  width: 90%;
   transform: scaleX(0);
   height: 1px;
   bottom: 0;
-  left: 0;
+  /* offset the 90% */
+  left: 5%;
   background-color: hsl(215, 83%, 67%);
   transform-origin: bottom right;
-  transition: transform 0.15s ease-in-out;
 }
 
 #app a:hover:after {
   transform: scaleX(1);
-  transform-origin: bottom left;
 }
 </style>

@@ -94,7 +94,19 @@ You can listen to Sortable events by adding the listeners to the `Sortable` comp
 >
 ```
 
-### Use with a Store
+### Using plugins
+
+You need to mount any plugins you want outside of [the default](https://github.com/SortableJS/Sortable#plugins) before importing this library. For example, the below is correct:
+
+```typescript
+import SortableJs from 'sortablejs';
+import { Swap } from 'sortablejs/modular/sortable.core.esm';
+SortableJs.mount(new Swap());
+
+import { Sortable } from "sortablejs-vue3";
+```
+
+### Use with a store
 
 No changes are necessary to work with Vuex or another store. Just pass `store.state.items` as your list. To modify your data you need to manually listen to the events and calculate the new position with `event.oldIndex` and `event.newIndex` with something like the following:
 
