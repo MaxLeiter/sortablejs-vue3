@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref, PropType, watch, onUnmounted, computed } from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
+import type { AutoScrollOptions } from "sortablejs/plugins";
 
 type SortableOptionsProp = Omit<
-  SortableOptions,
+  SortableOptions | AutoScrollOptions,
   | "onUnchoose"
   | "onChoose"
   | "onStart"
