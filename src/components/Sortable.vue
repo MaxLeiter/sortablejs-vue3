@@ -111,16 +111,17 @@ onUnmounted(() => {
     sortable.value = null;
   }
 });
+
 </script>
 
 <template>
   <component ref="containerRef" :is="$props.tag" :class="$props.class">
-    <slot
-      v-for="(item, index) of list"
-      :key="getKey(item)"
-      :element="item"
-      :index="index"
-      name="item"
-    ></slot>
+    <header v-if="$slots['header']">
+      <slot name="header"></slot>
+    </header>
+    <slot v-for="(item, index) of list" :key="getKey(item)" :element="item" :index="index" name="item"></slot>
+    <footer v-if="$slots['footer']">
+      <slot name="footer"></slot>
+    </footer>
   </component>
 </template>
