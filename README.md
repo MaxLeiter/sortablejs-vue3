@@ -88,9 +88,9 @@ You can listen to Sortable events by adding the listeners to the `Sortable` comp
 >
 ```
 
-### Vuex
+### Use with a Store
 
-No changes are necessary to work with Vuex. Just pass `store.state.items` as your list. To modify your data you need to manually listen to the events and calculate the new position with `event.oldIndex` and `event.newIndex` with something like the following:
+No changes are necessary to work with Vuex or another store. Just pass `store.state.items` as your list. To modify your data you need to manually listen to the events and calculate the new position with `event.oldIndex` and `event.newIndex` with something like the following:
 
 ```typescript
 const moveItemInArray = <T>(array: T[], from: number, to: number) => {
@@ -100,6 +100,8 @@ const moveItemInArray = <T>(array: T[], from: number, to: number) => {
 
 onEnd(event) { moveItemInArray(store.state.items, event.oldIndex, event.newIndex) }
 ```
+
+You may also want to see the SortableJS store documentation [here](https://github.com/SortableJS/Sortable#store).
 
 ## Development
 
