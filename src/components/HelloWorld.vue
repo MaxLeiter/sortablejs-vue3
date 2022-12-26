@@ -2,7 +2,7 @@
 import Sortable from "./Sortable.vue";
 import { computed, ref } from "vue";
 import type { SortableOptions } from "sortablejs";
-import { AutoScrollOptions } from "sortablejs/plugins";
+import type { AutoScrollOptions } from "sortablejs/plugins";
 
 const elements = computed(() => {
   return [
