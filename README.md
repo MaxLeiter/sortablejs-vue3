@@ -36,7 +36,7 @@ import { Sortable } from "sortablejs-vue3";
 
 3. Use the component:
 
-```typescript
+```vue
 <template>
   <main>
     <Sortable
@@ -45,18 +45,24 @@ import { Sortable } from "sortablejs-vue3";
       tag="div"
       :options="options"
     >
+      <-- The Header and Footer templates below are optional -->
+      <template #header>
+          <h1>SortableJS Vue3 Demo</h1>
+      </template>
       <template #item="{element, index}">
         <div class="draggable" :key="element.id">
           {{ element.name }}
         </div>
+      </template>
+      <template #footer>
+          <div class="draggable">A footer</div>
       </template>
     </Sortable>
 </template>
 ```
 
 4. The `list` and `item-key` props are necessary. The `options` prop is an object that can contain any SortableJS option. You can find a full list of them here: https://github.com/SortableJS/Sortable#options
-
-5. The `tag` prop is an optional prop, it's the HTML node type of the element that creates an outer element for the included slot. the default value is `div`
+    - The `tag` prop is optional and defaults to `div`. It's the HTML node type for the outer element of the included template/slot. 
 
 ### Props
 
