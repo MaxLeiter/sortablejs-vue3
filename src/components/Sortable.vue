@@ -86,7 +86,7 @@ watch(containerRef, (newDraggable) => {
       onSort: (event) => emit("sort", event),
       onRemove: (event) => emit("remove", event),
       onFilter: (event) => emit("filter", event),
-      onMove: (event, originalEvent) => "onMoveCapture" in attrs ? attrs.onMoveCapture() : emit("move", event, originalEvent),
+      onMove: (event, originalEvent) => "onMoveCapture" in attrs ? (<() => void>attrs.onMoveCapture)() : emit("move", event, originalEvent),
       onClone: (event) => emit("clone", event),
       onChange: (event) => emit("change", event),
     });
