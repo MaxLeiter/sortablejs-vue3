@@ -90,6 +90,7 @@ You can listen to Sortable events by adding the listeners to the `Sortable` comp
   @remove="(event: Sortable.SortableEvent) => void"
   @filter="(event: Sortable.SortableEvent) => void"
   @move="(event: Sortable.MoveEvent, event2: Event) => void"
+  @move.capture="(event: Sortable.MoveEvent, event2: Event) => boolean | -1 | 1"
   @clone="(event: Sortable.SortableEvent) => void"
 >
 ```
