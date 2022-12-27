@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, PropType, watch, onUnmounted, computed } from "vue";
+import { ref, PropType, watch, onUnmounted, computed, useAttrs } from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
 
@@ -63,6 +63,8 @@ const emit = defineEmits<{
   (eventName: "change", evt: Sortable.SortableEvent): void;
 }>();
 
+const attrs = useAttrs()
+
 const containerRef = ref<HTMLElement | null>(null);
 const sortable = ref<Sortable | null>(null);
 const getKey = computed(() => {
@@ -84,7 +86,7 @@ watch(containerRef, (newDraggable) => {
       onSort: (event) => emit("sort", event),
       onRemove: (event) => emit("remove", event),
       onFilter: (event) => emit("filter", event),
-      onMove: (event, originalEvent) => emit("move", event, originalEvent),
+      onMove: (event, originalEvent) => "onMoveCapture" in attrs ? attrs.onMoveCapture() : emit("move", event, originalEvent),
       onClone: (event) => emit("clone", event),
       onChange: (event) => emit("change", event),
     });
