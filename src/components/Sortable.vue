@@ -87,7 +87,7 @@ watch(containerRef, (newDraggable) => {
       onRemove: (event) => emit("remove", event),
       onFilter: (event) => emit("filter", event),
       // See https://github.com/MaxLeiter/sortablejs-vue3/pull/56 for context on `attrs`.
-      onMove: (event, originalEvent) => "onMoveCapture" in attrs ? (<() => void>attrs.onMoveCapture)() : emit("move", event, originalEvent),
+      onMove: (event, originalEvent) => "onMoveCapture" in attrs ? (<(event: Sortable.MoveEvent, originalEvent: Event) => void>attrs.onMoveCapture)(event, originalEvent) : emit("move", event, originalEvent),
       onClone: (event) => emit("clone", event),
       onChange: (event) => emit("change", event),
     });
