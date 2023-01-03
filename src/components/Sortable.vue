@@ -63,7 +63,7 @@ const emit = defineEmits<{
   (eventName: "change", evt: Sortable.SortableEvent): void;
 }>();
 
-const attrs = useAttrs()
+const attrs = useAttrs();
 
 const containerRef = ref<HTMLElement | null>(null);
 const sortable = ref<Sortable | null>(null);
@@ -72,6 +72,8 @@ const getKey = computed(() => {
     return (item: any) => item[props.itemKey as string];
   return props.itemKey;
 });
+
+defineExpose({ containerRef, sortable });
 
 watch(containerRef, (newDraggable) => {
   if (newDraggable) {
