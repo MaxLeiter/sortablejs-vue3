@@ -73,7 +73,7 @@ const getKey = computed(() => {
   return props.itemKey;
 });
 
-defineExpose({ containerRef, sortable });
+defineExpose({ containerRef, sortable: <unknown>sortable });
 
 watch(containerRef, (newDraggable) => {
   if (newDraggable) {
