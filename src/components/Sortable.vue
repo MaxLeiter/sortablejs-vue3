@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, PropType, watch, onUnmounted, computed, useAttrs } from "vue";
+import { ref, PropType, watch, onUnmounted, computed, useAttrs, Ref } from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
 
@@ -73,7 +73,7 @@ const getKey = computed(() => {
   return props.itemKey;
 });
 
-defineExpose({ containerRef, sortable: <unknown>sortable });
+defineExpose({ containerRef, sortable: <Ref<Sortable | null>>sortable });
 
 watch(containerRef, (newDraggable) => {
   if (newDraggable) {
