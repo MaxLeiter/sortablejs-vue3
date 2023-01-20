@@ -122,12 +122,8 @@ onUnmounted(() => {
 
 <template>
   <component ref="containerRef" :is="$props.tag" :class="$props.class">
-    <header v-if="$slots['header']">
-      <slot name="header"></slot>
-    </header>
+    <slot name="header"></slot>
     <slot v-for="(item, index) of list" :key="getKey(item)" :element="item" :index="index" name="item"></slot>
-    <footer v-if="$slots['footer']">
-      <slot name="footer"></slot>
-    </footer>
+    <slot name="footer"></slot>
   </component>
 </template>
