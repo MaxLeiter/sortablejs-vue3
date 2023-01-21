@@ -47,7 +47,9 @@ import { Sortable } from "sortablejs-vue3";
     >
       <-- The Header and Footer templates below are optional -->
       <template #header>
-          <h1>SortableJS Vue3 Demo</h1>
+          <header>
+            <h1>SortableJS Vue3 Demo</h1>
+          </header>
       </template>
       <template #item="{element, index}">
         <div class="draggable" :key="element.id">
@@ -55,7 +57,7 @@ import { Sortable } from "sortablejs-vue3";
         </div>
       </template>
       <template #footer>
-          <div class="draggable">A footer</div>
+          <footer class="draggable">A footer</footer>
       </template>
     </Sortable>
 </template>
