@@ -65,6 +65,7 @@ const emit = defineEmits<{
 
 const attrs = useAttrs();
 
+const isDragging = ref(false);
 const containerRef = ref<HTMLElement | null>(null);
 const sortable = ref<Sortable | null>(null);
 const getKey = computed(() => {
@@ -73,7 +74,11 @@ const getKey = computed(() => {
   return props.itemKey;
 });
 
-defineExpose({ containerRef, sortable: <Ref<Sortable | null>>sortable });
+defineExpose({
+  containerRef,
+  sortable: <Ref<Sortable | null>>sortable,
+  isDragging,
+});
 
 watch(containerRef, (newDraggable) => {
   if (newDraggable) {
@@ -81,8 +86,18 @@ watch(containerRef, (newDraggable) => {
       ...props.options,
       onChoose: (event) => emit("choose", event),
       onUnchoose: (event) => emit("unchoose", event),
-      onStart: (event) => emit("start", event),
-      onEnd: (event) => emit("end", event),
+      onStart: (event) => {
+        isDragging.value = true;
+        emit("start", event);
+      },
+      onEnd: (event) => {
+        // This is a hack to move the event to the end of the event queue.
+        // cf this issue: https://github.com/SortableJS/Sortable/issues/1184
+        setTimeout(() => {
+          isDragging.value = false;
+          emit("end", event);
+        });
+      },
       onAdd: (event) => emit("add", event),
       onUpdate: (event) => emit("update", event),
       onSort: (event) => emit("sort", event),
@@ -117,7 +132,6 @@ onUnmounted(() => {
     sortable.value = null;
   }
 });
-
 </script>
 
 <template>

@@ -109,12 +109,19 @@ const elements = computed(() => {
   ];
 });
 
+const sortable = ref<InstanceType<typeof Sortable> | null>(null);
+
 const logEvent = (evt: Event, evt2?: Event) => {
   if (evt2) {
     console.log(evt, evt2);
   } else {
     console.log(evt);
   }
+};
+
+const logClick = (evt: Event) => {
+  if (sortable.value?.isDragging) return;
+  logEvent(evt);
 };
 
 const animating = ref(true);
@@ -221,9 +228,10 @@ main {
         @filter="logEvent"
         @move="logEvent"
         @clone="logEvent"
+        ref="sortable"
       >
         <template #item="{ element, index }">
-          <div class="draggable" :key="element.id">
+          <div class="draggable" :key="element.id" @click="logClick">
             {{ element.text }}
             <Sortable
               v-if="element.children"
