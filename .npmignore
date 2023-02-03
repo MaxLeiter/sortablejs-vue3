@@ -31,4 +31,4 @@ sortablejs-*.tgz
 # Specific to ignoring when packaging
 .github
 
-
+readme
