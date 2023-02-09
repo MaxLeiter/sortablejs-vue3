@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, PropType, watch, onUnmounted, computed, useAttrs, Ref } from "vue";
+import { ref, PropType, watch, onUnmounted, computed, useAttrs, Ref } from "vue-demi";
 import Sortable, { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
 
