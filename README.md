@@ -4,7 +4,7 @@
 
 ![GIF of the demo being used](./readme/demo.gif)
 
-This is a thin wrapper around the great [SortableJS](https://github.com/SortableJS/Sortable) library. I had many issues migrating from Vue.Draggable to vue.draggable.next, and after briefly investigating I decided that it was too complicated and a smaller solution was the answer. This wrapper attempts to keep you as close to Sortable as possible.
+This is a thin wrapper around the great [SortableJS](https://github.com/SortableJS/Sortable) library for Vue 2 & 3. I had many issues migrating from Vue.Draggable to vue.draggable.next, and after briefly investigating I decided that it was too complicated and a smaller solution was the answer. This wrapper attempts to keep you as close to Sortable as possible.
 
 ### Why not use \<other library\>?
 
@@ -123,6 +123,14 @@ onEnd(event) { moveItemInArray(store.state.items, event.oldIndex, event.newIndex
 ```
 
 You may also want to see the SortableJS store documentation [here](https://github.com/SortableJS/Sortable#store).
+
+## Vue 2 support
+
+If you are using version prior to `vue@2.7.0`, `@vue/composition-api` is required to be installed to use SortableJS-vue3 with Vue 2.
+
+Everything else should be similar to the example above for Vue 3.
+
+Under the hood, we use [Vue Demi](https://github.com/vueuse/vue-demi) a tool that allows us to write Universal Vue Libraries for Vue 2 & 3.
 
 ## Development
 
