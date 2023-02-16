@@ -36,11 +36,17 @@
   },
   "dependencies": {
     "sortablejs": "^1.15.0",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-demi": "^0.13.11"
   },
   "peerDependencies": {
     "sortablejs": "^1.15.0",
-    "vue": "^3.2.25"
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/node": "18.11.18",
