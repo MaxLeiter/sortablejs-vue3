@@ -1,4 +1,4 @@
-# SortableJS-vue3
+# SortableJS-vue3 testing
 
 [Demo](https://sortablejs-vue3.maxleiter.com) | [npm](https://www.npmjs.com/package/sortablejs-vue3)
 
