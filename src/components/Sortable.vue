@@ -19,6 +19,12 @@ type SortableOptionsProp = Omit<
   | "onChange"
 >;
 
+type ExposedProps = {
+  containerRef: Ref<HTMLDivElement | null>;
+  sortable: Ref<Sortable | null>;
+  isDragging: Ref<boolean>;
+}
+
 const props = defineProps({
   /** All SortableJS options are supported; events are handled by the `defineEmits` below and should be used with v-on */
   options: {
@@ -76,9 +82,9 @@ const getKey = computed(() => {
 
 defineExpose({
   containerRef,
-  sortable: <Ref<Sortable | null>>sortable,
+  sortable,
   isDragging,
-});
+} as ExposedProps);
 
 watch(containerRef, (newDraggable) => {
   if (newDraggable) {
