@@ -10,9 +10,6 @@ export default defineConfig({
     preserveSymlinks: false,
   },
   logLevel: "info",
-  optimizeDeps: {
-    exclude: ['vue-demi']
-  },
   build: {
     target: "esnext",
     minify: "terser",
