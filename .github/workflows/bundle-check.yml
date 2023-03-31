@@ -1,0 +1,51 @@
+name: Bundle Size Check
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  bundle-size:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm run build
+
+      - name: Calculate bundle size
+        id: bundle-size
+        run: |
+          SIZE=$(du -s dist | awk '{print $1}')
+          echo "Bundle size: $SIZE bytes"
+          echo "::set-output name=size::$SIZE"
+
+      - name: Store bundle size as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: bundle-size
+          path: |
+            dist/
+            !dist/**/*.map
+
+      - name: Add bundle size comment
+        uses: peter-evans/create-or-update-comment@v2.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            📦 **Bundle size:** The bundle size increased by ${{ steps.bundle-size.outputs.size }} bytes.
