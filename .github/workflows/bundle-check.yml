@@ -34,20 +34,6 @@ jobs:
           echo "Bundle size: $SIZE bytes"
           echo "::set-output name=size::$SIZE"
 
-      - name: Get changed files and size differences
-        id: file-changes
-        run: |
-          git fetch origin ${{ github.head_ref }}
-          CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/${{ github.base_ref }}...${{ github.head_ref }} -- dist)
-          SIZE_DIFFS=""
-          for FILE in $CHANGED_FILES; do
-            SIZE_BEFORE=$(git show origin/${{ github.base_ref }}:$FILE | wc -c)
-            SIZE_AFTER=$(cat $FILE | wc -c)
-            SIZE_DIFF=$((SIZE_AFTER - SIZE_BEFORE))
-            SIZE_DIFFS="$FILE: $SIZE_DIFF bytes\n"
-          done
-          echo "::set-output name=size_diffs::$SIZE_DIFFS"
-
       - name: Store bundle size as artifact
         uses: actions/upload-artifact@v3
         with:
@@ -63,8 +49,3 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             📦 **Bundle size:** The bundle size increased by ${{ steps.bundle-size.outputs.size }} bytes.
-
-            📄 **Changed files and size differences:**
-            ```
-            ${{ steps.file-changes.outputs.size_diffs }}
-            ```
