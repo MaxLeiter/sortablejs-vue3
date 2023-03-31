@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Sortable from "./Sortable.vue";
-import { computed, ref } from "vue-demi";
+import { computed, ref } from "vue";
 import type { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
 
