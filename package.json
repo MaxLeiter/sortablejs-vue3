@@ -30,6 +30,7 @@
   "module": "./dist/sortablejs-vue3.es.js",
   "exports": {
     ".": {
+      "types": "./dist/types/main.d.ts",
       "import": "./dist/sortablejs-vue3.es.js",
       "require": "./dist/sortablejs-vue3.umd.js"
     }
