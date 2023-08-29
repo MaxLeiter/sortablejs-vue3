@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   sortablejs:
     specifier: ^1.15.0
@@ -19,8 +23,8 @@ devDependencies:
     specifier: 4.0.0
     version: 4.0.0(vite@4.1.4)(vue@3.2.41)
   prettier:
-    specifier: 2.8.4
-    version: 2.8.4
+    specifier: 3.0.3
+    version: 3.0.3
   terser:
     specifier: 5.16.5
     version: 5.16.5
@@ -622,9 +626,9 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /prettier@2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
-    engines: {node: '>=10.13.0'}
+  /prettier@3.0.3:
+    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
