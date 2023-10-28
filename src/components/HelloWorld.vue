@@ -1,112 +1,46 @@
 <script setup lang="ts">
 import Sortable from "./Sortable.vue";
-import { computed, ref } from "vue";
+import { computed, nextTick, ref } from "vue";
 import type { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
+import { defineStore } from "pinia";
 
-const elements = computed(() => {
-  return [
-    {
-      id: "1",
-      text: "One",
-      children: [
+const store = defineStore({
+  id: "demo",
+  state: () => ({
+    elements: {
+      items: [
         {
-          id: "1-1",
-          text: "One-One",
-          children: [
-            {
-              id: "1-1-1",
-              text: "One-One-One",
-            },
-            {
-              id: "1-1-2",
-              text: "One-One-Two",
-            },
-          ],
+          id: "1",
+          text: "One",
         },
+        ...Array.from({ length: 10 }, (_, i) => ({
+          id: `${i + 2}`,
+          text: `Item ${i + 2}`,
+        })),
+      ],
+      fruits: [
         {
-          id: "1-2",
-          text: "One-Two",
+          id: "a",
+          text: "Apple",
         },
+        ...Array.from({ length: 10 }, (_, i) => ({
+          id: `${String.fromCharCode(98 + i)}`,
+          text: `Fruit ${String.fromCharCode(98 + i)}`,
+        })),
       ],
     },
-    {
-      id: "2",
-      text: "Two",
-    },
-    {
-      id: "3",
-      text: "Three",
-    },
-    {
-      id: "4",
-      text: "Four",
-    },
-    {
-      id: "5",
-      text: "Five",
-    },
-    {
-      id: "6",
-      text: "Six",
-    },
-    {
-      id: "7",
-      text: "Seven",
-    },
-    {
-      id: "8",
-      text: "Eight",
-    },
-    {
-      id: "9",
-      text: "Nine",
-    },
-    {
-      id: "10",
-      text: "Ten",
-    },
-    {
-      id: "11",
-      text: "Eleven",
-    },
-    {
-      id: "12",
-      text: "Twelve",
-    },
-    {
-      id: "13",
-      text: "Thirteen",
-    },
-    {
-      id: "14",
-      text: "Fourteen",
-    },
-    {
-      id: "15",
-      text: "Fifteen",
-    },
-    {
-      id: "16",
-      text: "Sixteen",
-    },
-    {
-      id: "17",
-      text: "Seventeen",
-    },
-    {
-      id: "18",
-      text: "Eighteen",
-    },
-    {
-      id: "19",
-      text: "Nineteen",
-    },
-    {
-      id: "20",
-      text: "Twenty",
-    },
-  ];
+  }),
+  getters: {},
+  actions: {},
+})();
+
+const elements = computed(() => {
+  return store.elements.items;
+});
+
+const fruits = computed(() => {
+  return store.elements.fruits;
 });
 
 const sortable = ref<InstanceType<typeof Sortable> | null>(null);
@@ -119,33 +53,73 @@ const logEvent = (evt: Event, evt2?: Event) => {
   }
 };
 
-const logClick = (evt: Event) => {
-  if (sortable.value?.isDragging) return;
-  logEvent(evt);
+const removeItemFromArray = (array: string, from: number) => {
+  store.elements[array].splice(from, 1)[0];
 };
+function onRemove(event, array) {
+  removeItemFromArray(array, event.oldIndex);
+  // event.item.remove(); // Hack to remove phantom DOM element :(
+}
+const addItemToArray = (array: string, item: object, to: number) => {
+  store.elements[array].splice(to, 0, item);
+};
+function onAdd(event, array) {
+  // temporary hardcoded fake item - TODO: get correct item from store
+  let item = {
+    id: "t",
+    text: "test",
+  };
+  nextTick(() => addItemToArray(array, item, event.newIndex));
+}
+const moveItemInArray = (array: string, from: number, to: number) => {
+  const item = store.elements[array].splice(from, 1)[0];
+  store.elements[array].splice(to, 0, item);
+};
+function onUpdate(event, array) {
+  moveItemInArray(array, event.oldIndex, event.newIndex);
+}
 
-const animating = ref(true);
-const scrollSensitivity = ref(50);
-const scrollSpeed = ref(10);
 
 const options = computed<SortableOptions | AutoScrollOptions>(() => {
   return {
     draggable: ".draggable",
-    animation: animating.value ? 150 : 0,
+    animation: 150,
     ghostClass: "ghost",
     dragClass: "drag",
+    group: "testgroup",
     scroll: true,
     forceFallback: true,
-    scrollSensitivity: scrollSensitivity.value,
-    scrollSpeed: scrollSpeed.value,
     bubbleScroll: true,
+
   };
 });
 
-const onPress = (evt: Event) => {
-  animating.value = !animating.value;
-};
 </script>
+
+<template>
+  <main>
+    <div class="wrapper">
+      <Sortable ref="sortable" :list="elements" item-key="id" :options="options" @change="logEvent" @choose="logEvent"
+        @unchoose="logEvent" @start="logEvent" @end="logEvent" @add="onAdd($event, 'items')"
+        @update="onUpdate($event, 'items')" @sort="logEvent" @remove="onRemove($event, 'items')" @filter="logEvent"
+        @move="logEvent" @clone="logEvent">
+        <template #item="{ element }">
+          <div :key="element.id" class="draggable">
+            {{ element.text }}
+          </div>
+        </template>
+      </Sortable>
+      <Sortable :list="fruits" item-key="id" :options="options" @change="logEvent" @choose="logEvent" @unchoose="logEvent"
+        @start="logEvent" @end="logEvent" @add="onAdd($event, 'fruits')" @update="onUpdate($event, 'fruits')"
+        @sort="logEvent" @remove="onRemove($event, 'fruits')" @filter="logEvent" @move="logEvent" @clone="logEvent">
+        <template #item="{ element }">
+          <div :key="element.id" class="draggable">
+            {{ element.text }} </div>
+        </template>
+      </Sortable>
+    </div>
+  </main>
+</template>
 
 <style lang="css" scoped>
 main {
@@ -188,78 +162,8 @@ main {
   display: flex;
   flex-direction: column;
 }
+
 .settings .range p {
   margin: 0;
 }
 </style>
-
-<template>
-  <main>
-    <div class="settings">
-      <button @click="onPress">Toggle animations</button>
-      <div class="range">
-        <input
-          type="range"
-          min="0"
-          max="200"
-          v-model.number="scrollSensitivity"
-        />
-        <p>scrollSensitivity : {{ scrollSensitivity }}px</p>
-      </div>
-      <div class="range">
-        <input type="range" min="0" max="100" v-model.number="scrollSpeed" />
-        <p>scrollSpeed : {{ scrollSpeed }}px</p>
-      </div>
-    </div>
-    <div class="wrapper">
-      <Sortable
-        :list="elements"
-        item-key="id"
-        :options="options"
-        @change="logEvent"
-        @choose="logEvent"
-        @unchoose="logEvent"
-        @start="logEvent"
-        @end="logEvent"
-        @add="logEvent"
-        @update="logEvent"
-        @sort="logEvent"
-        @remove="logEvent"
-        @filter="logEvent"
-        @move="logEvent"
-        @clone="logEvent"
-        ref="sortable"
-      >
-        <template #item="{ element, index }">
-          <div class="draggable" :key="element.id" @click="logClick">
-            {{ element.text }}
-            <Sortable
-              v-if="element.children"
-              :list="element.children"
-              :item-key="(item) => item.id"
-              :options="options"
-              @change="logEvent"
-              @choose="logEvent"
-              @unchoose="logEvent"
-              @start="logEvent"
-              @end="logEvent"
-              @add="logEvent"
-              @update="logEvent"
-              @sort="logEvent"
-              @remove="logEvent"
-              @filter="logEvent"
-              @move="logEvent"
-              @clone="logEvent"
-            >
-              <template #item="{ element, index }">
-                <div class="draggable" :key="element.id">
-                  {{ element.text }}
-                </div>
-              </template>
-            </Sortable>
-          </div>
-        </template>
-      </Sortable>
-    </div>
-  </main>
-</template>

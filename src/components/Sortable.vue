@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { ref, PropType, watch, onUnmounted, computed, useAttrs, Ref } from "vue";
+import {
+  ref,
+  PropType,
+  watch,
+  onUnmounted,
+  computed,
+  useAttrs,
+  Ref,
+} from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
 
@@ -23,7 +31,7 @@ type ExposedProps = {
   containerRef: Ref<HTMLDivElement | null>;
   sortable: Ref<Sortable | null>;
   isDragging: Ref<boolean>;
-}
+};
 
 const props = defineProps({
   /** All SortableJS options are supported; events are handled by the `defineEmits` below and should be used with v-on */
@@ -110,7 +118,13 @@ watch(containerRef, (newDraggable) => {
       onRemove: (event) => emit("remove", event),
       onFilter: (event) => emit("filter", event),
       // See https://github.com/MaxLeiter/sortablejs-vue3/pull/56 for context on `attrs`.
-      onMove: (event, originalEvent) => "onMoveCapture" in attrs ? (<(event: Sortable.MoveEvent, originalEvent: Event) => void>attrs.onMoveCapture)(event, originalEvent) : emit("move", event, originalEvent),
+      onMove: (event, originalEvent) =>
+        "onMoveCapture" in attrs
+          /**  eslint-disable-next-line */
+          ? (<(event: Sortable.MoveEvent, originalEvent: Event) => void>(
+            attrs.onMoveCapture
+          ))(event, originalEvent)
+          : emit("move", event, originalEvent),
       onClone: (event) => emit("clone", event),
       onChange: (event) => emit("change", event),
     });

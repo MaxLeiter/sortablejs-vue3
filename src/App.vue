@@ -10,8 +10,15 @@ import HelloWorld from "./components/HelloWorld.vue";
     Source on <a href="https://github.com/maxleiter/sortablejs-vue3">GitHub</a>
   </h2>
   <ol class="instructions">
-    <li>First run
-      <code>yarn add sortablejs-vue3 <a href="https://github.com/SortableJS/Sortable" target="_blank" rel="noreferrer">sortablejs</a></code>
+    <li>
+      First run
+      <code>yarn add sortablejs-vue3
+              <a
+                href="https://github.com/SortableJS/Sortable"
+                target="_blank"
+                rel="noreferrer"
+                >sortablejs</a
+              ></code>
     </li>
     <li>
       Then add
