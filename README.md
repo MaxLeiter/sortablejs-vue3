@@ -126,7 +126,7 @@ You may also want to see the SortableJS store documentation [here](https://githu
 
 ### Examples
 
-- [./src/examples/MultipleGroups.vue](./src/examples/MultipleGroups.vue) - A mock store implementation with one list containing multiple `group`s
+- [./src/examples/WithStore.vue](./src/examples/WithStore.vue) - A simple example with a store
 
 ## Development
 

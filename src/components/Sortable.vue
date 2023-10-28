@@ -120,10 +120,10 @@ watch(containerRef, (newDraggable) => {
       // See https://github.com/MaxLeiter/sortablejs-vue3/pull/56 for context on `attrs`.
       onMove: (event, originalEvent) =>
         "onMoveCapture" in attrs
-          /**  eslint-disable-next-line */
-          ? (<(event: Sortable.MoveEvent, originalEvent: Event) => void>(
-            attrs.onMoveCapture
-          ))(event, originalEvent)
+          ? /**  eslint-disable-next-line */
+            (<(event: Sortable.MoveEvent, originalEvent: Event) => void>(
+              attrs.onMoveCapture
+            ))(event, originalEvent)
           : emit("move", event, originalEvent),
       onClone: (event) => emit("clone", event),
       onChange: (event) => emit("change", event),
@@ -157,7 +157,13 @@ onUnmounted(() => {
 <template>
   <component ref="containerRef" :is="$props.tag" :class="$props.class">
     <slot name="header"></slot>
-    <slot v-for="(item, index) of list" :key="getKey(item)" :element="item" :index="index" name="item"></slot>
+    <slot
+      v-for="(item, index) of list"
+      :key="getKey(item)"
+      :element="item"
+      :index="index"
+      name="item"
+    ></slot>
     <slot name="footer"></slot>
   </component>
 </template>

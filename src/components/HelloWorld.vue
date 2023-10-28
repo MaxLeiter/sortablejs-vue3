@@ -199,7 +199,12 @@ main {
     <div class="settings">
       <button @click="onPress">Toggle animations</button>
       <div class="range">
-        <input type="range" min="0" max="200" v-model.number="scrollSensitivity" />
+        <input
+          type="range"
+          min="0"
+          max="200"
+          v-model.number="scrollSensitivity"
+        />
         <p>scrollSensitivity : {{ scrollSensitivity }}px</p>
       </div>
       <div class="range">
@@ -208,16 +213,45 @@ main {
       </div>
     </div>
     <div class="wrapper">
-      <Sortable :list="elements" item-key="id" :options="options" @change="logEvent" @choose="logEvent"
-        @unchoose="logEvent" @start="logEvent" @end="logEvent" @add="logEvent" @update="logEvent" @sort="logEvent"
-        @remove="logEvent" @filter="logEvent" @move="logEvent" @clone="logEvent" ref="sortable">
+      <Sortable
+        :list="elements"
+        item-key="id"
+        :options="options"
+        @change="logEvent"
+        @choose="logEvent"
+        @unchoose="logEvent"
+        @start="logEvent"
+        @end="logEvent"
+        @add="logEvent"
+        @update="logEvent"
+        @sort="logEvent"
+        @remove="logEvent"
+        @filter="logEvent"
+        @move="logEvent"
+        @clone="logEvent"
+        ref="sortable"
+      >
         <template #item="{ element, index }">
           <div class="draggable" :key="element.id" @click="logClick">
             {{ element.text }}
-            <Sortable v-if="element.children" :list="element.children" :item-key="(item) => item.id" :options="options"
-              @change="logEvent" @choose="logEvent" @unchoose="logEvent" @start="logEvent" @end="logEvent" @add="logEvent"
-              @update="logEvent" @sort="logEvent" @remove="logEvent" @filter="logEvent" @move="logEvent"
-              @clone="logEvent">
+            <Sortable
+              v-if="element.children"
+              :list="element.children"
+              :item-key="(item) => item.id"
+              :options="options"
+              @change="logEvent"
+              @choose="logEvent"
+              @unchoose="logEvent"
+              @start="logEvent"
+              @end="logEvent"
+              @add="logEvent"
+              @update="logEvent"
+              @sort="logEvent"
+              @remove="logEvent"
+              @filter="logEvent"
+              @move="logEvent"
+              @clone="logEvent"
+            >
               <template #item="{ element, index }">
                 <div class="draggable" :key="element.id">
                   {{ element.text }}

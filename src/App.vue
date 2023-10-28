@@ -12,13 +12,15 @@ import HelloWorld from "./components/HelloWorld.vue";
   <ol class="instructions">
     <li>
       First run
-      <code>yarn add sortablejs-vue3
-              <a
-                href="https://github.com/SortableJS/Sortable"
-                target="_blank"
-                rel="noreferrer"
-                >sortablejs</a
-              ></code>
+      <code
+        >yarn add sortablejs-vue3
+        <a
+          href="https://github.com/SortableJS/Sortable"
+          target="_blank"
+          rel="noreferrer"
+          >sortablejs</a
+        ></code
+      >
     </li>
     <li>
       Then add
@@ -47,17 +49,26 @@ import HelloWorld from "./components/HelloWorld.vue";
     <summary>Props</summary>
     <ul>
       <li>
-        <strong><code>options</code></strong>: An object supporting all SortedJS options. See Sortable on GitHub
-        <a href="https://github.com/SortableJS/Sortable#options" rel="noreferrer" target="_blank">for a full list</a>.
+        <strong><code>options</code></strong
+        >: An object supporting all SortedJS options. See Sortable on GitHub
+        <a
+          href="https://github.com/SortableJS/Sortable#options"
+          rel="noreferrer"
+          target="_blank"
+          >for a full list</a
+        >.
       </li>
       <li>
-        <strong><code>list</code></strong>: An array-like object of elements to be made draggable.
+        <strong><code>list</code></strong
+        >: An array-like object of elements to be made draggable.
       </li>
       <li>
-        <strong><code>itemKey</code></strong>: A key to index the elements of the list.
+        <strong><code>itemKey</code></strong
+        >: A key to index the elements of the list.
       </li>
       <li>
-        <strong><code>tag</code></strong>: The element type to render as. Defaults to <code>div</code>.
+        <strong><code>tag</code></strong
+        >: The element type to render as. Defaults to <code>div</code>.
       </li>
     </ul>
   </details>
@@ -71,7 +82,9 @@ import HelloWorld from "./components/HelloWorld.vue";
     <p>
       Made by <a href="https://twitter.com/max_leiter">@Max_Leiter</a> &mdash;
       Code for this page is available on
-      <a href="https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/HelloWorld.vue">
+      <a
+        href="https://github.com/MaxLeiter/sortablejs-vue3/blob/main/src/components/HelloWorld.vue"
+      >
         GitHub
       </a>
     </p>

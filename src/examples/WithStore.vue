@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Sortable from "../components/Sortable.vue";
 import { computed, nextTick, ref } from "vue";
-import type { SortableOptions } from "sortablejs";
+import type { SortableEvent, SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
 
 const store = {
@@ -15,7 +15,7 @@ const store = {
                 id: `${i + 2}`,
                 text: `Item ${i + 2}`,
             })),
-        ],
+        ] as { id: string; text: string }[],
         fruits: [
             {
                 id: "a",
@@ -25,9 +25,9 @@ const store = {
                 id: `${String.fromCharCode(98 + i)}`,
                 text: `Fruit ${String.fromCharCode(98 + i)}`,
             })),
-        ],
+        ] as { id: string; text: string }[],
     },
-};
+}
 
 const elements = computed(() => {
     return store.elements.items;
@@ -47,34 +47,39 @@ const logEvent = (evt: Event, evt2?: Event) => {
     }
 };
 
-const removeItemFromArray = (array: string, from: number) => {
-    store.elements[array].splice(from, 1)[0];
+const removeItemFromArray = (group: keyof typeof store.elements, from: number) => {
+    store.elements[group].splice(from, 1)[0];
 };
 
-function onRemove(event, array) {
-    removeItemFromArray(array, event.oldIndex);
+function onRemove(event: SortableEvent, group: keyof typeof store.elements) {
+    if (!event.oldIndex) return;
+    removeItemFromArray(group, event.oldIndex);
 }
 
-const addItemToArray = (array: string, item: object, to: number) => {
-    store.elements[array].splice(to, 0, item);
+const addItemToGroup = (group: keyof typeof store.elements, item: { id: string; text: string }, to: number) => {
+    store.elements[group].splice(to, 0, item);
 };
 
-function onAdd(event, array) {
-    // get item from store
-    let item = {
-        id: "new",
-        text: "New Item",
-    };
-    nextTick(() => addItemToArray(array, item, event.newIndex));
+function onAdd(event: SortableEvent, group: keyof typeof store.elements) {
+    nextTick(() => {
+        if (!event.newIndex) return;
+        let item = {
+            id: "new",
+            text: "New Item",
+        };
+
+        addItemToGroup(group, item, event.newIndex)
+    });
 }
 
-const moveItemInArray = (array: string, from: number, to: number) => {
-    const item = store.elements[array].splice(from, 1)[0];
-    store.elements[array].splice(to, 0, item);
+const moveItemInArray = (group: keyof typeof store.elements, from: number, to: number) => {
+    const item = store.elements[group].splice(from, 1)[0];
+    store.elements[group].splice(to, 0, item);
 };
 
-function onUpdate(event, array) {
-    moveItemInArray(array, event.oldIndex, event.newIndex);
+function onUpdate(event: SortableEvent, group: keyof typeof store.elements): void {
+    if (!event.oldIndex || !event.newIndex) return;
+    moveItemInArray(group, event.oldIndex, event.newIndex);
 }
 
 const options = computed<SortableOptions | AutoScrollOptions>(() => {
@@ -87,7 +92,6 @@ const options = computed<SortableOptions | AutoScrollOptions>(() => {
         scroll: true,
         forceFallback: true,
         bubbleScroll: true,
-
     };
 });
 </script>
@@ -111,7 +115,8 @@ const options = computed<SortableOptions | AutoScrollOptions>(() => {
                 @filter="logEvent" @move="logEvent" @clone="logEvent">
                 <template #item="{ element }">
                     <div :key="element.id" class="draggable">
-                        {{ element.text }} </div>
+                        {{ element.text }}
+                    </div>
                 </template>
             </Sortable>
         </div>
