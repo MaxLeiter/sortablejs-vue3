@@ -188,6 +188,7 @@ main {
   display: flex;
   flex-direction: column;
 }
+
 .settings .range p {
   margin: 0;
 }

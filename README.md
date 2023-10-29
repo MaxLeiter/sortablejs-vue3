@@ -64,7 +64,7 @@ import { Sortable } from "sortablejs-vue3";
 ```
 
 4. The `list` and `item-key` props are necessary. The `options` prop is an object that can contain any SortableJS option. You can find a full list of them here: https://github.com/SortableJS/Sortable#options
-    - The `tag` prop is optional and defaults to `div`. It's the HTML node type for the outer element of the included template/slot. 
+   - The `tag` prop is optional and defaults to `div`. It's the HTML node type for the outer element of the included template/slot.
 
 ### Props
 
@@ -102,8 +102,8 @@ You can listen to Sortable events by adding the listeners to the `Sortable` comp
 You need to mount any plugins you want outside of [the default](https://github.com/SortableJS/Sortable#plugins) before importing this library. For example, the below is correct:
 
 ```typescript
-import SortableJs from 'sortablejs';
-import { Swap } from 'sortablejs/modular/sortable.core.esm';
+import SortableJs from "sortablejs";
+import { Swap } from "sortablejs/modular/sortable.core.esm";
 SortableJs.mount(new Swap());
 
 import { Sortable } from "sortablejs-vue3";
@@ -116,13 +116,17 @@ No changes are necessary to work with Vuex or another store. Just pass `store.st
 ```typescript
 const moveItemInArray = <T>(array: T[], from: number, to: number) => {
   const item = array.splice(from, 1)[0];
-  array.splice(to, 0, item);
+  nextTick(() => array.splice(to, 0, item));
 };
 
 onEnd(event) { moveItemInArray(store.state.items, event.oldIndex, event.newIndex) }
 ```
 
 You may also want to see the SortableJS store documentation [here](https://github.com/SortableJS/Sortable#store).
+
+### Examples
+
+- [./src/examples/WithStore.vue](./src/examples/WithStore.vue) - A simple example with a store
 
 ## Development
 
