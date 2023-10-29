@@ -124,27 +124,17 @@ const logClick = (evt: Event) => {
   logEvent(evt);
 };
 
-const animating = ref(true);
-const scrollSensitivity = ref(50);
-const scrollSpeed = ref(10);
-
 const options = computed<SortableOptions | AutoScrollOptions>(() => {
   return {
     draggable: ".draggable",
-    animation: animating.value ? 150 : 0,
+    animation: 150,
     ghostClass: "ghost",
     dragClass: "drag",
     scroll: true,
     forceFallback: true,
-    scrollSensitivity: scrollSensitivity.value,
-    scrollSpeed: scrollSpeed.value,
     bubbleScroll: true,
   };
 });
-
-const onPress = (evt: Event) => {
-  animating.value = !animating.value;
-};
 </script>
 
 <style lang="css" scoped>
@@ -196,62 +186,17 @@ main {
 
 <template>
   <main>
-    <div class="settings">
-      <button @click="onPress">Toggle animations</button>
-      <div class="range">
-        <input
-          type="range"
-          min="0"
-          max="200"
-          v-model.number="scrollSensitivity"
-        />
-        <p>scrollSensitivity : {{ scrollSensitivity }}px</p>
-      </div>
-      <div class="range">
-        <input type="range" min="0" max="100" v-model.number="scrollSpeed" />
-        <p>scrollSpeed : {{ scrollSpeed }}px</p>
-      </div>
-    </div>
     <div class="wrapper">
-      <Sortable
-        :list="elements"
-        item-key="id"
-        :options="options"
-        @change="logEvent"
-        @choose="logEvent"
-        @unchoose="logEvent"
-        @start="logEvent"
-        @end="logEvent"
-        @add="logEvent"
-        @update="logEvent"
-        @sort="logEvent"
-        @remove="logEvent"
-        @filter="logEvent"
-        @move="logEvent"
-        @clone="logEvent"
-        ref="sortable"
-      >
+      <Sortable :list="elements" item-key="id" :options="options" @change="logEvent" @choose="logEvent"
+        @unchoose="logEvent" @start="logEvent" @end="logEvent" @add="logEvent" @update="logEvent" @sort="logEvent"
+        @remove="logEvent" @filter="logEvent" @move="logEvent" @clone="logEvent" ref="sortable">
         <template #item="{ element, index }">
           <div class="draggable" :key="element.id" @click="logClick">
             {{ element.text }}
-            <Sortable
-              v-if="element.children"
-              :list="element.children"
-              :item-key="(item) => item.id"
-              :options="options"
-              @change="logEvent"
-              @choose="logEvent"
-              @unchoose="logEvent"
-              @start="logEvent"
-              @end="logEvent"
-              @add="logEvent"
-              @update="logEvent"
-              @sort="logEvent"
-              @remove="logEvent"
-              @filter="logEvent"
-              @move="logEvent"
-              @clone="logEvent"
-            >
+            <Sortable v-if="element.children" :list="element.children" :item-key="(item) => item.id" :options="options"
+              @change="logEvent" @choose="logEvent" @unchoose="logEvent" @start="logEvent" @end="logEvent" @add="logEvent"
+              @update="logEvent" @sort="logEvent" @remove="logEvent" @filter="logEvent" @move="logEvent"
+              @clone="logEvent">
               <template #item="{ element, index }">
                 <div class="draggable" :key="element.id">
                   {{ element.text }}
