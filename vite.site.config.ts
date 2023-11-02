@@ -4,4 +4,10 @@ import vue from "@vitejs/plugin-vue";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  build: {
+    outDir: "site",
+  },
+  preview: {
+    port: 3000,
+  },
 });
