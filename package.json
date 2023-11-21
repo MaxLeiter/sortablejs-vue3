@@ -1,6 +1,6 @@
 {
   "name": "sortablejs-vue3",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "author": {
     "email": "maxwell.leiter@gmail.com",
     "name": "Max Leiter",
@@ -20,7 +20,7 @@
     "build": "vite build && vue-tsc --emitDeclarationOnly --project tsconfig.dist.json && mv dist/lib dist/types && rm -rf dist/favicon.ico",
     "build:site": "vue-tsc --noEmit --project tsconfig.site.json && vite --config vite.site.config.ts build",
     "preview": "vite preview",
-    "lint": "yarn prettier --write '**/*.{ts,vue,json}'"
+    "lint": "pnpm prettier --write '**/*.{ts,vue,json}'"
   },
   "types": "./dist/types/main.d.ts",
   "files": [

@@ -19,7 +19,7 @@ You can see a demo with more complete code at [https://sortablejs-vue3.maxleiter
 1. Install the package:
 
 ```bash
-yarn add sortablejs-vue3 sortablejs
+pnpm add sortablejs-vue3 sortablejs
 ```
 
 or
@@ -130,10 +130,10 @@ You may also want to see the SortableJS store documentation [here](https://githu
 
 ## Development
 
-1. Run `yarn` to install dependencies
-2. `yarn dev` will start a web server with live reloading
-3. `yarn build` will build the production library files
-4. `yarn build:site` will build the demo website
+1. Run `pnpm` to install dependencies
+2. `pnpm dev` will start a web server with live reloading
+3. `pnpm build` will build the production library files
+4. `pnpm build:site` will build the demo website
 
 ### Recommended IDE Setup
 
