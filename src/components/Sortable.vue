@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import {
-  ref,
-  PropType,
-  watch,
-  onUnmounted,
-  computed,
-  useAttrs,
-  Ref,
-} from "vue";
 import Sortable, { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
+import {
+  PropType,
+  Ref,
+  computed,
+  onUnmounted,
+  ref,
+  useAttrs,
+  watch,
+} from "vue";
 
 type SortableOptionsProp = Omit<
   SortableOptions | AutoScrollOptions,
@@ -138,11 +138,11 @@ watch(
       for (const property in options) {
         sortable.value.option(
           property as keyof SortableOptionsProp,
-          options[property as keyof SortableOptionsProp]
+          options[property as keyof SortableOptionsProp],
         );
       }
     }
-  }
+  },
 );
 
 onUnmounted(() => {
