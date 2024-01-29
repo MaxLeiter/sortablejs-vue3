@@ -1,15 +1,7 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import Sortable, { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
-import {
-  PropType,
-  Ref,
-  computed,
-  onUnmounted,
-  ref,
-  useAttrs,
-  watch,
-} from "vue";
+import { Ref, computed, onUnmounted, ref, useAttrs, watch } from "vue";
 
 type SortableOptionsProp = Omit<
   SortableOptions | AutoScrollOptions,
@@ -33,34 +25,12 @@ type ExposedProps = {
   isDragging: Ref<boolean>;
 };
 
-const props = defineProps({
-  /** All SortableJS options are supported; events are handled by the `defineEmits` below and should be used with v-on */
-  options: {
-    type: Object as PropType<SortableOptionsProp>,
-    default: null,
-    required: false,
-  },
-  /** Your list of items **/
-  list: {
-    type: [Array, Object] as PropType<any[]>,
-    default: [],
-    required: true,
-  },
-  /** The name of the key present in each item in the list that corresponds to a unique value. */
-  itemKey: {
-    type: [String, Function] as PropType<
-      string | ((item: any) => string | number | Symbol)
-    >,
-    default: "",
-    required: true,
-  },
-  /** The element type to render as. */
-  tag: {
-    type: String as PropType<string>,
-    default: "div",
-    required: false,
-  },
-});
+const props = defineProps<{
+  options?: SortableOptionsProp;
+  list: T[];
+  itemKey: keyof T;
+  tag?: string;
+}>();
 
 const emit = defineEmits<{
   (eventName: "choose", evt: Sortable.SortableEvent): void;
@@ -159,7 +129,7 @@ onUnmounted(() => {
     <slot name="header"></slot>
     <slot
       v-for="(item, index) of list"
-      :key="getKey(item)"
+      :key="item[props.itemKey]"
       :element="item"
       :index="index"
       name="item"
