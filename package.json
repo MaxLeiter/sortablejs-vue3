@@ -1,6 +1,7 @@
 {
   "name": "sortablejs-vue3",
   "version": "1.2.11",
+  "type": "module",
   "author": {
     "email": "maxwell.leiter@gmail.com",
     "name": "Max Leiter",
