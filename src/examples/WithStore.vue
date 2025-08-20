@@ -3,6 +3,7 @@ import Sortable from "../components/Sortable.vue";
 import { computed, nextTick, ref } from "vue";
 import type { SortableEvent, SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
+import { ComponentExposed } from "vue-component-type-helpers";
 
 const store = {
     elements: {
@@ -37,7 +38,7 @@ const fruits = computed(() => {
     return store.elements.fruits;
 });
 
-const sortable = ref<InstanceType<typeof Sortable> | null>(null);
+const sortable = ref<ComponentExposed<typeof Sortable> | null>(null);
 
 const logEvent = (evt: Event, evt2?: Event) => {
     if (evt2) {

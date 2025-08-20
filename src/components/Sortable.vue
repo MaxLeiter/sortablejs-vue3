@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="GItem">
 import {
   ref,
   PropType,
@@ -42,14 +42,14 @@ const props = defineProps({
   },
   /** Your list of items **/
   list: {
-    type: [Array, Object] as PropType<any[]>,
+    type: [Array, Object] as PropType<GItem[]>,
     default: [],
     required: true,
   },
   /** The name of the key present in each item in the list that corresponds to a unique value. */
   itemKey: {
     type: [String, Function] as PropType<
-      string | ((item: any) => string | number | Symbol)
+      string | ((item: GItem) => string | number | Symbol)
     >,
     default: "",
     required: true,
