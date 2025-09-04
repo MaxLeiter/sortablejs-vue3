@@ -1,14 +1,14 @@
 <script setup lang="ts" generic="GItem">
 import {
   ref,
-  PropType,
   watch,
   onUnmounted,
   computed,
   useAttrs,
-  Ref,
 } from "vue";
-import Sortable, { SortableOptions } from "sortablejs";
+import type { PropType, Ref, ComponentPublicInstance } from "vue";
+import Sortable from "sortablejs";
+import type { SortableOptions } from "sortablejs";
 import type { AutoScrollOptions } from "sortablejs/plugins";
 
 type SortableOptionsProp = Omit<
@@ -28,7 +28,7 @@ type SortableOptionsProp = Omit<
 >;
 
 type ExposedProps = {
-  containerRef: Ref<HTMLDivElement | null>;
+  containerRef: Ref<HTMLDivElement | ComponentPublicInstance | null>;
   sortable: Ref<Sortable | null>;
   isDragging: Ref<boolean>;
 };
@@ -60,6 +60,11 @@ const props = defineProps({
     default: "div",
     required: false,
   },
+  groupTag: {
+    type: String,
+    default: "div",
+    required: false,
+  },
 });
 
 const emit = defineEmits<{
@@ -80,7 +85,7 @@ const emit = defineEmits<{
 const attrs = useAttrs();
 
 const isDragging = ref(false);
-const containerRef = ref<HTMLElement | null>(null);
+const containerRef = ref<HTMLElement | ComponentPublicInstance | null>(null);
 const sortable = ref<Sortable | null>(null);
 const getKey = computed(() => {
   if (typeof props.itemKey === "string")
@@ -95,8 +100,16 @@ defineExpose({
 } as ExposedProps);
 
 watch(containerRef, (newDraggable) => {
+  let el: HTMLElement | null = null;
   if (newDraggable) {
-    sortable.value = new Sortable(newDraggable, {
+    if ("$el" in newDraggable && newDraggable.$el instanceof HTMLElement) {
+      el = newDraggable.$el;
+    } else if (newDraggable instanceof HTMLElement) {
+      el = newDraggable;
+    }
+  }
+  if (el) {
+    sortable.value = new Sortable(el, {
       ...props.options,
       onChoose: (event) => emit("choose", event),
       onUnchoose: (event) => emit("unchoose", event),
@@ -155,7 +168,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <component ref="containerRef" :is="$props.tag" :class="$props.class">
+  <component
+    v-if="!['transition-group', 'TransitionGroup'].includes(tag)"
+    ref="containerRef"
+    :is="tag"
+    :class="$props.class"
+  >
     <slot name="header"></slot>
     <slot
       v-for="(item, index) of list"
@@ -166,4 +184,20 @@ onUnmounted(() => {
     ></slot>
     <slot name="footer"></slot>
   </component>
+  <transition-group
+    v-else
+    :tag="groupTag"
+    :class="$props.class"
+    ref="containerRef"
+  >
+    <slot name="header"></slot>
+    <slot
+      v-for="(item, index) of list"
+      :key="getKey(item)"
+      :element="item"
+      :index="index"
+      name="item"
+    ></slot>
+    <slot name="footer"></slot>
+  </transition-group>
 </template>
