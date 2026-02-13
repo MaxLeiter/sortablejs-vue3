@@ -131,21 +131,27 @@ main {
 }
 
 .draggable {
-    background: #fff;
+    background: linear-gradient(90deg, #00ffcc, #ff0066, #ffe600);
     padding: 10px;
     margin: 10px;
-    border: 1px solid #ccc;
+    border: 3px solid #00ff00;
     cursor: move;
+    color: #0000ff;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 #ff00ff;
 }
 
 .ghost {
     opacity: 0.5;
-    background: #fff;
-    border: 1px dashed #ccc;
+    background: #ff6600;
+    border: 3px dashed #00ffff;
 }
 
 .drag {
-    background: #f5f5f5;
+    background: #00ff00;
+    color: #ff0000;
 }
 
 .wrapper {

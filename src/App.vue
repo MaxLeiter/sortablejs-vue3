@@ -80,29 +80,31 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 <style>
 :root {
-  --link: hsl(215, 49%, 49%);
+  --link: hsl(320, 100%, 60%);
   --gap: 8px;
   --gap-half: calc(var(--gap) / 2);
   --gap-quarter: calc(var(--gap) / 4);
   --gap-double: calc(var(--gap) * 2);
   --content-width: 800px;
 
-  --fg: #2c3e50;
-  --bg: #ecf0f1;
-  --bg-emphasis: #f5f7fa;
+  --fg: #ff00ff;
+  --bg: #0ff0a0;
+  --bg-emphasis: #ffe600;
 
-  --border: #ccc;
+  --border: #ff6600;
   --border-radius: 4px;
 }
 
 #app {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--fg);
   margin: 0 auto;
   max-width: var(--content-width);
+  background: linear-gradient(135deg, #0ff0a0 0%, #ff00ff 25%, #00ffff 50%, #ffe600 75%, #ff6600 100%);
+  min-height: 100vh;
+  padding: 20px;
 }
 
 #app .instructions {
@@ -179,7 +181,7 @@ import HelloWorld from "./components/HelloWorld.vue";
   bottom: 0;
   /* offset the 90% */
   left: 5%;
-  background-color: hsl(215, 83%, 67%);
+  background-color: #ff0000;
   transform-origin: bottom right;
 }
 
