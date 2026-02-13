@@ -284,21 +284,29 @@ const priorityColors: Record<string, string> = {
 }
 
 .kanban-board {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: 1rem;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.5rem;
 }
 
-@media (max-width: 900px) {
-  .kanban-board {
-    grid-template-columns: repeat(2, 1fr);
+@media (min-width: 701px) {
+  .kanban-board > .kanban-column {
+    flex: 1 1 0;
+    min-width: 180px;
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .kanban-board {
-    grid-template-columns: 1fr;
+    flex-wrap: nowrap;
+  }
+  .kanban-board > .kanban-column {
+    min-width: 200px;
+    flex: 0 0 72vw;
+    scroll-snap-align: start;
   }
 }
 

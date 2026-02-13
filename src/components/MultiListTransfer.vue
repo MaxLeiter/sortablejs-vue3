@@ -172,6 +172,7 @@ function moveAll(from: "available" | "selected", to: "available" | "selected") {
 
 .transfer-panel {
   flex: 1;
+  min-width: 0;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;

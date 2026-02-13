@@ -45,6 +45,8 @@ watch(() => props.value, (val) => animateTo(val));
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .counter-value {
@@ -55,13 +57,26 @@ watch(() => props.value, (val) => animateTo(val));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  white-space: nowrap;
 }
 
 .counter-label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .counter-value {
+    font-size: 1.5rem;
+  }
+  .counter-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.02em;
+  }
 }
 </style>

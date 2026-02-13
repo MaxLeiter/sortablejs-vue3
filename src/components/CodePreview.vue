@@ -67,6 +67,7 @@ function copyCode(code: string) {
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .toggle-btn {
@@ -133,8 +134,9 @@ pre {
   margin: 0;
   padding: 1rem;
   overflow-x: auto;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   line-height: 1.6;
+  max-width: 100%;
 }
 
 code {

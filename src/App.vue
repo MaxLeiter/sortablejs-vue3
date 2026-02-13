@@ -304,6 +304,7 @@ a:hover {
 .hero-inner {
   max-width: 900px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .hero-top {
@@ -373,8 +374,9 @@ a:hover {
 
 .stats-row {
   display: flex;
-  gap: 3rem;
+  gap: 1.5rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 600px) {
@@ -408,6 +410,8 @@ a:hover {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 0.65rem 1.25rem;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .install-cmd {
