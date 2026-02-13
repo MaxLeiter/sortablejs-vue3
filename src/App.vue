@@ -265,6 +265,7 @@ body {
   color: var(--text);
   transition: background 0.3s ease, color 0.3s ease;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -282,6 +283,8 @@ a:hover {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* ===== Hero ===== */
@@ -289,6 +292,13 @@ a:hover {
   background: var(--hero-bg);
   border-bottom: 1px solid var(--border);
   padding: 2rem 1.5rem 3rem;
+  overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 1.5rem 1rem 2rem;
+  }
 }
 
 .hero-inner {
@@ -369,13 +379,25 @@ a:hover {
 
 @media (max-width: 600px) {
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .hero-title-vue {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+  .hero-description {
+    font-size: 1rem;
   }
   .stats-row {
-    gap: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .install-block {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .install-cmd {
+    font-size: 0.75rem;
+    white-space: nowrap;
   }
 }
 
@@ -402,6 +424,13 @@ a:hover {
   margin: 0 auto;
   padding: 2rem 1.5rem;
   flex: 1;
+  overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding: 1.5rem 1rem;
+  }
 }
 
 /* ===== Demo Tabs ===== */
@@ -417,15 +446,17 @@ a:hover {
 
 .tab-btn {
   flex: 1;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 0.75rem;
   border: none;
   background: transparent;
   color: var(--text-muted);
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   cursor: pointer;
   border-radius: 9px;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .tab-btn:hover {
@@ -461,6 +492,7 @@ a:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-top: 3rem;
+  max-width: 100%;
 }
 
 @media (max-width: 700px) {

@@ -139,6 +139,8 @@ function moveAll(from: "available" | "selected", to: "available" | "selected") {
 <style scoped>
 .transfer-section {
   margin: 3rem 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .transfer-section h2 {

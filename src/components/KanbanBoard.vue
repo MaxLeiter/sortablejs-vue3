@@ -196,6 +196,8 @@ const priorityColors: Record<string, string> = {
 <style scoped>
 .kanban-section {
   margin: 3rem 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .kanban-header {
@@ -203,6 +205,8 @@ const priorityColors: Record<string, string> = {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .kanban-header h2 {
